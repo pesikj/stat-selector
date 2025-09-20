@@ -114,6 +114,48 @@ export function Wizard() {
             className="max-w-md mx-auto"
           />
 
+          {currentStep > 0 && Object.keys(selections).length > 0 && (
+            <Card className="max-w-2xl mx-auto mb-4">
+              <CardHeader>
+                <CardTitle className="text-lg">Your Previous Choices</CardTitle>
+              </CardHeader>
+              <CardContent className="p-4">
+                <div className="space-y-2 text-sm">
+                  {selections.samples && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Number of samples:</span>
+                      <span className="font-medium">{
+                        ui.steps.find(s => s.id === 'samples')?.options?.find(o => o.id === selections.samples)?.label || selections.samples
+                      }</span>
+                    </div>
+                  )}
+                  {selections.measure && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">What to compare:</span>
+                      <span className="font-medium">{
+                        (() => {
+                          const measureStep = ui.steps.find(s => s.id === 'measure');
+                          if (measureStep?.optionsBySamples && selections.samples) {
+                            return measureStep.optionsBySamples[selections.samples]?.find(o => o.id === selections.measure)?.label || selections.measure;
+                          }
+                          return measureStep?.options?.find(o => o.id === selections.measure)?.label || selections.measure;
+                        })()
+                      }</span>
+                    </div>
+                  )}
+                  {selections.normality && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Data normality:</span>
+                      <span className="font-medium">{
+                        ui.steps.find(s => s.id === 'normality')?.options?.find(o => o.id === selections.normality)?.label || selections.normality
+                      }</span>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           <Card className="max-w-2xl mx-auto">
             <CardHeader>
               <CardTitle className="text-xl text-center">

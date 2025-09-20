@@ -35,7 +35,7 @@ export function Wizard() {
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading configuration...</p>
+          <p className="text-muted-foreground">Načítání konfigurace...</p>
         </div>
       </div>
     );
@@ -47,7 +47,7 @@ export function Wizard() {
         <CardContent className="p-6 text-center">
           <p className="text-destructive mb-4">{error}</p>
           <Button onClick={loadConfig} variant="outline">
-            Retry
+            Zkusit znovu
           </Button>
         </CardContent>
       </Card>
@@ -58,7 +58,7 @@ export function Wizard() {
     return (
       <Card className="max-w-md mx-auto">
         <CardContent className="p-6 text-center">
-          <p className="text-muted-foreground">No configuration loaded</p>
+          <p className="text-muted-foreground">Žádná konfigurace není načtena</p>
         </CardContent>
       </Card>
     );
@@ -87,7 +87,7 @@ export function Wizard() {
           {ui.title}
         </h1>
         <p className="text-muted-foreground">
-          Answer a few questions to find the right statistical test for your data
+          Odpovězte na několik otázek a najděte správný statistický test pro vaše data
         </p>
       </div>
 
@@ -101,7 +101,7 @@ export function Wizard() {
               aria-label="Start over with new selections"
             >
               <RotateCcw className="h-4 w-4 mr-2" />
-              Start Over
+              Začít znovu
             </Button>
           </div>
           <InfoBubble result={result} className="mx-auto" />
@@ -117,13 +117,13 @@ export function Wizard() {
           {currentStep > 0 && Object.keys(selections).length > 0 && (
             <Card className="max-w-2xl mx-auto mb-4">
               <CardHeader>
-                <CardTitle className="text-lg">Your Previous Choices</CardTitle>
+                <CardTitle className="text-lg">Vaše předchozí volby</CardTitle>
               </CardHeader>
               <CardContent className="p-4">
                 <div className="space-y-2 text-sm">
                   {selections.samples && (
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Number of samples:</span>
+                      <span className="text-muted-foreground">Počet vzorků:</span>
                       <span className="font-medium">{
                         ui.steps.find(s => s.id === 'samples')?.options?.find(o => o.id === selections.samples)?.label || selections.samples
                       }</span>
@@ -131,7 +131,7 @@ export function Wizard() {
                   )}
                   {selections.measure && (
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">What to compare:</span>
+                      <span className="text-muted-foreground">Co porovnávat:</span>
                       <span className="font-medium">{
                         (() => {
                           const measureStep = ui.steps.find(s => s.id === 'measure');
@@ -145,7 +145,7 @@ export function Wizard() {
                   )}
                   {selections.normality && (
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Data normality:</span>
+                      <span className="text-muted-foreground">Normalita dat:</span>
                       <span className="font-medium">{
                         ui.steps.find(s => s.id === 'normality')?.options?.find(o => o.id === selections.normality)?.label || selections.normality
                       }</span>
@@ -187,7 +187,7 @@ export function Wizard() {
                 />
               ) : (
                 <div className="text-center text-muted-foreground py-8">
-                  No options available for this step
+                  Pro tento krok nejsou k dispozici žádné možnosti
                 </div>
               )}
             </CardContent>
@@ -204,7 +204,7 @@ export function Wizard() {
               )}
             >
               <ChevronLeft className="h-4 w-4 mr-2" />
-              Previous
+              Předchozí
             </Button>
 
             <Button
@@ -212,7 +212,7 @@ export function Wizard() {
               disabled={!canProceed()}
               className="ml-auto"
             >
-              {currentStep === totalSteps - 1 ? "Get Result" : "Next"}
+              {currentStep === totalSteps - 1 ? "Získat výsledek" : "Další"}
               <ChevronRight className="h-4 w-4 ml-2" />
             </Button>
           </div>

@@ -14,7 +14,7 @@ export function Navigation() {
             to="/" 
             className="text-xl font-bold text-primary hover:text-primary-glow transition-colors"
           >
-            Statistical Test Picker
+            Výběr statistického testu
           </Link>
           
           <div className="flex gap-2">
@@ -25,7 +25,7 @@ export function Navigation() {
             >
               <Link to="/">
                 <Calculator className="h-4 w-4 mr-2" />
-                Wizard
+                Průvodce
               </Link>
             </Button>
             
@@ -36,7 +36,7 @@ export function Navigation() {
             >
               <Link to="/config">
                 <Settings className="h-4 w-4 mr-2" />
-                Config
+                Konfigurace
               </Link>
             </Button>
           </div>

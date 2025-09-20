@@ -103,7 +103,7 @@ export function ConfigPage() {
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading configuration...</p>
+          <p className="text-muted-foreground">Načítání konfigurace...</p>
         </div>
       </div>
     );
@@ -113,10 +113,10 @@ export function ConfigPage() {
     <div className="max-w-6xl mx-auto p-6">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-foreground mb-2">
-          Configuration Editor
+          Editor konfigurace
         </h1>
         <p className="text-muted-foreground">
-          Edit and manage the statistical test picker configuration
+          Upravte a spravujte konfiguraci výběru statistických testů
         </p>
       </div>
 
@@ -128,7 +128,7 @@ export function ConfigPage() {
           className={cn(isLoading && "animate-pulse")}
         >
           <RefreshCw className={cn("h-4 w-4 mr-2", isLoading && "animate-spin")} />
-          Reload Config
+          Načíst konfiguraci
         </Button>
       </div>
 
@@ -150,15 +150,15 @@ export function ConfigPage() {
 
       <Tabs defaultValue="ui" className="w-full">
         <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-6">
-          <TabsTrigger value="ui">UI Configuration</TabsTrigger>
-          <TabsTrigger value="tests">Tests Configuration</TabsTrigger>
+          <TabsTrigger value="ui">Konfigurace rozhraní</TabsTrigger>
+          <TabsTrigger value="tests">Konfigurace testů</TabsTrigger>
         </TabsList>
 
         <TabsContent value="ui">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
-                UI Configuration (ui.json)
+                Konfigurace rozhraní (ui.json)
                 <div className="flex gap-2">
                   <Button
                     variant="ghost"
@@ -184,12 +184,12 @@ export function ConfigPage() {
                 value={uiJson}
                 onChange={(e) => setUiJson(e.target.value)}
                 className="font-mono text-sm min-h-[400px]"
-                placeholder="Enter UI configuration JSON..."
+                placeholder="Zadejte JSON konfiguraci rozhraní..."
                 aria-label="UI configuration JSON editor"
               />
               <Button onClick={validateAndSaveUI} className="w-full">
                 <Save className="h-4 w-4 mr-2" />
-                Validate & Save UI Config
+                Ověřit a uložit konfiguraci rozhraní
               </Button>
             </CardContent>
           </Card>
@@ -199,7 +199,7 @@ export function ConfigPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
-                Tests Configuration (tests.json)
+                Konfigurace testů (tests.json)
                 <div className="flex gap-2">
                   <Button
                     variant="ghost"
@@ -225,12 +225,12 @@ export function ConfigPage() {
                 value={testsJson}
                 onChange={(e) => setTestsJson(e.target.value)}
                 className="font-mono text-sm min-h-[400px]"
-                placeholder="Enter tests configuration JSON..."
+                placeholder="Zadejte JSON konfiguraci testů..."
                 aria-label="Tests configuration JSON editor"
               />
               <Button onClick={validateAndSaveTests} className="w-full">
                 <Save className="h-4 w-4 mr-2" />
-                Validate & Save Tests Config
+                Ověřit a uložit konfiguraci testů
               </Button>
             </CardContent>
           </Card>
@@ -238,13 +238,13 @@ export function ConfigPage() {
       </Tabs>
 
       <div className="mt-8 p-4 bg-muted/50 rounded-lg">
-        <h3 className="font-semibold text-sm mb-2">Configuration Help</h3>
+        <h3 className="font-semibold text-sm mb-2">Nápověda ke konfiguraci</h3>
         <ul className="text-sm text-muted-foreground space-y-1">
-          <li>• Make sure JSON is valid before saving</li>
-          <li>• UI config defines steps, labels, and options</li>
-          <li>• Tests config maps selections to statistical tests</li>
-          <li>• Use the "Reload Config" button to refresh from server files</li>
-          <li>• Changes are validated using JSON schema</li>
+          <li>• Před uložením se ujistěte, že je JSON platný</li>
+          <li>• Konfigurace rozhraní definuje kroky, popisky a možnosti</li>
+          <li>• Konfigurace testů mapuje výběry na statistické testy</li>
+          <li>• Použijte tlačítko "Načíst konfiguraci" pro obnovení ze serverových souborů</li>
+          <li>• Změny jsou ověřovány pomocí JSON schématu</li>
         </ul>
       </div>
     </div>

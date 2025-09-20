@@ -1,35 +1,35 @@
 ### one_sample_t
-Independent observations; approximate normality. Reports t and df.
+Nezávislá pozorování; přibližná normalita. Hlásí t a df.
 
 ### wilcoxon_signed_rank
-Nonparametric; symmetric distribution recommended; reports W.
+Neparametrický; doporučuje se symetrické rozdělení; hlásí W.
 
 ### chi_square_var
-Normality assumed; tests population variance with χ².
+Předpoklad normality; testuje rozptyl populace pomocí χ².
 
 ### shapiro_wilk
-Normality test; reports W; sensitive for small n.
+Test normality; hlásí W; citlivý pro malé n.
 
 ### welch_t
-Two-sample means; unequal variances; reports t and df (Welch–Satterthwaite).
+Průměry dvou vzorků; nerovné rozptyly; hlásí t a df (Welch–Satterthwaite).
 
 ### mann_whitney_u
-Nonparametric; compares rank distributions; reports U.
+Neparametrický; porovnává rozdělení pořadí; hlásí U.
 
 ### levene
-Tests equality of variances; robust alternative: Brown–Forsythe.
+Testuje rovnost rozptylů; robustní alternativa: Brown–Forsythe.
 
 ### pearson
-Linear correlation; normality and homoscedasticity recommended.
+Lineární korelace; doporučuje se normalita a homoskedasticita.
 
 ### spearman
-Monotonic association; rank-based; robust to non-normality.
+Monotónní asociace; založena na pořadí; robustní vůči nenormalitě.
 
 ### ks_two_sample
-Compares empirical distribution functions; sensitive to differences in location/shape.
+Porovnává empirické distribuční funkce; citlivý na rozdíly v lokaci/tvaru.
 
 ### anova_one_way
-Means across 3+ groups; normality & homogeneity of variances.
+Průměry napříč 3+ skupinami; normalita a homogenita rozptylů.
 
 ### kruskal_wallis
-Nonparametric ANOVA alternative; compares rank sums across groups.
+Neparametrická alternativa ANOVY; porovnává součty pořadí napříč skupinami.

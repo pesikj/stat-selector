@@ -41,7 +41,7 @@ Assumptions: ${result.assumptions}${result.test.alt ? `\nAlternative: ${result.t
             className="text-xl font-bold text-accent flex items-center gap-2"
           >
             <Info className="h-5 w-5" aria-hidden="true" />
-            Recommended Test
+            Doporučený test
           </CardTitle>
           <Button
             variant="ghost"
@@ -66,41 +66,41 @@ Assumptions: ${result.assumptions}${result.test.alt ? `\nAlternative: ${result.t
           </h3>
           {result.test.alt && (
             <Badge variant="secondary" className="mb-3">
-              Alternative: {result.test.alt}
+              Alternativa: {result.test.alt}
             </Badge>
           )}
         </div>
 
         <div>
-          <h4 className="font-medium text-foreground mb-2">Why this test?</h4>
+          <h4 className="font-medium text-foreground mb-2">Proč tento test?</h4>
           <p className="text-muted-foreground">{result.rationale}</p>
         </div>
 
         <div>
-          <h4 className="font-medium text-foreground mb-2">Assumptions</h4>
+          <h4 className="font-medium text-foreground mb-2">Předpoklady</h4>
           <p className="text-muted-foreground leading-relaxed">
             {result.assumptions}
           </p>
         </div>
 
         <div className="pt-2 border-t border-border">
-          <h4 className="font-medium text-foreground mb-2">Your selections</h4>
+          <h4 className="font-medium text-foreground mb-2">Vaše volby</h4>
           <div className="flex flex-wrap gap-2">
             {result.selections.samples && (
               <Badge variant="outline">
-                Samples: {result.selections.samples.replace('_', ' ')}
+                Vzorky: {result.selections.samples.replace('_', ' ')}
               </Badge>
             )}
             {result.selections.measure && (
               <Badge variant="outline">
-                Measure: {result.selections.measure}
+                Měření: {result.selections.measure}
               </Badge>
             )}
             {result.selections.normality && (
               <Badge variant="outline">
-                Distribution: {result.selections.normality === 'yes' ? 'Normal' : 
-                             result.selections.normality === 'no' ? 'Non-normal' : 
-                             'Uncertain'}
+                Rozdělení: {result.selections.normality === 'yes' ? 'Normální' : 
+                             result.selections.normality === 'no' ? 'Nenormální' : 
+                             'Nejisté'}
               </Badge>
             )}
           </div>

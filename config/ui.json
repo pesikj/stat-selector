@@ -1,43 +1,43 @@
 {
-  "title": "Statistical Test Picker",
+  "title": "Výběr statistického testu",
   "steps": [
     {
       "id": "samples",
-      "label": "Number of samples",
+      "label": "Počet vzorků",
       "options": [
-        { "id": "one", "label": "One" },
-        { "id": "two", "label": "Two" },
-        { "id": "three_or_more", "label": "Three or more" }
+        { "id": "one", "label": "Jeden" },
+        { "id": "two", "label": "Dva" },
+        { "id": "three_or_more", "label": "Tři nebo více" }
       ]
     },
     {
       "id": "measure",
-      "label": "What do you want to compare?",
+      "label": "Co chcete porovnávat?",
       "optionsBySamples": {
         "one": [
-          { "id": "mean", "label": "Mean" },
-          { "id": "variance", "label": "Variance" },
-          { "id": "normality", "label": "Normality" }
+          { "id": "mean", "label": "Průměr" },
+          { "id": "variance", "label": "Rozptyl" },
+          { "id": "normality", "label": "Normalitu" }
         ],
         "two": [
-          { "id": "means", "label": "Means" },
-          { "id": "variances", "label": "Variances" },
-          { "id": "correlation", "label": "Correlation" },
-          { "id": "distributions", "label": "Distributions" }
+          { "id": "means", "label": "Průměry" },
+          { "id": "variances", "label": "Rozptyly" },
+          { "id": "correlation", "label": "Korelaci" },
+          { "id": "distributions", "label": "Rozdělení" }
         ],
         "three_or_more": [
-          { "id": "means", "label": "Means" },
-          { "id": "variances", "label": "Variances" }
+          { "id": "means", "label": "Průměry" },
+          { "id": "variances", "label": "Rozptyly" }
         ]
       }
     },
     {
       "id": "normality",
-      "label": "Are data normally distributed?",
+      "label": "Jsou data normálně rozdělená?",
       "options": [
-        { "id": "yes", "label": "Yes" },
-        { "id": "no", "label": "No" },
-        { "id": "unsure", "label": "Not sure" }
+        { "id": "yes", "label": "Ano" },
+        { "id": "no", "label": "Ne" },
+        { "id": "unsure", "label": "Nejsem si jistý/á" }
       ]
     }
   ]

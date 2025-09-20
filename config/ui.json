@@ -1,0 +1,44 @@
+{
+  "title": "Statistical Test Picker",
+  "steps": [
+    {
+      "id": "samples",
+      "label": "Number of samples",
+      "options": [
+        { "id": "one", "label": "One" },
+        { "id": "two", "label": "Two" },
+        { "id": "three_or_more", "label": "Three or more" }
+      ]
+    },
+    {
+      "id": "measure",
+      "label": "What do you want to compare?",
+      "optionsBySamples": {
+        "one": [
+          { "id": "mean", "label": "Mean" },
+          { "id": "variance", "label": "Variance" },
+          { "id": "normality", "label": "Normality" }
+        ],
+        "two": [
+          { "id": "means", "label": "Means" },
+          { "id": "variances", "label": "Variances" },
+          { "id": "correlation", "label": "Correlation" },
+          { "id": "distributions", "label": "Distributions" }
+        ],
+        "three_or_more": [
+          { "id": "means", "label": "Means" },
+          { "id": "variances", "label": "Variances" }
+        ]
+      }
+    },
+    {
+      "id": "normality",
+      "label": "Are data normally distributed?",
+      "options": [
+        { "id": "yes", "label": "Yes" },
+        { "id": "no", "label": "No" },
+        { "id": "unsure", "label": "Not sure" }
+      ]
+    }
+  ]
+}

@@ -27,14 +27,14 @@ export function InfoBubble({ result, className }: InfoBubbleProps) {
   };
 
   return (
-    <Card 
+    <Card
       className={cn("w-full max-w-2xl shadow-accent border-accent/20", className)}
       role="region"
       aria-labelledby="result-title"
     >
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
-          <CardTitle 
+          <CardTitle
             id="result-title"
             className="text-xl font-bold text-accent flex items-center gap-2"
           >
@@ -56,7 +56,7 @@ export function InfoBubble({ result, className }: InfoBubbleProps) {
           </Button>
         </div>
       </CardHeader>
-      
+
       <CardContent className="space-y-4">
         <div>
           <h3 className="text-lg font-semibold text-primary mb-2">
@@ -107,19 +107,30 @@ export function InfoBubble({ result, className }: InfoBubbleProps) {
           <div className="flex flex-wrap gap-2">
             {result.selections.samples && (
               <Badge variant="outline">
-                Výběry: {result.selections.samples.replace('_', ' ')}
+                Výběry: {result.selections.samples === 'one' ? 'jeden' :
+                  result.selections.samples === 'two' ? 'dva' :
+                    "tři a více"}
               </Badge>
             )}
             {result.selections.measure && (
               <Badge variant="outline">
-                Měření: {result.selections.measure}
+                Porovnává: {
+                  result.selections.measure === 'mean' ? 'průměr' :
+                    result.selections.measure === 'variance' ? 'rozptyl' :
+                      result.selections.measure === 'normality' ? 'normalitu' :
+                        result.selections.measure === 'means' ? 'průměry' :
+                          result.selections.measure === 'variances' ? 'rozptyly' :
+                            result.selections.measure === 'correlation' ? 'korelaci' :
+                              result.selections.measure === 'distributions' ? 'rozdělení' :
+                                ""
+                }
               </Badge>
             )}
             {result.selections.normality && (
               <Badge variant="outline">
-                Rozdělení: {result.selections.normality === 'yes' ? 'Normální' : 
-                             result.selections.normality === 'no' ? 'Nenormální' : 
-                             'Nejisté'}
+                Rozdělení: {result.selections.normality === 'yes' ? 'normální' :
+                  result.selections.normality === 'no' ? 'není normální' :
+                    'nevíme'}
               </Badge>
             )}
           </div>

@@ -1,8 +1,9 @@
-import { UIConfig, TestsConfig, UIConfigSchema, TestsConfigSchema } from './types';
+import { UIConfig, TestsConfig, TestDetailsConfig, UIConfigSchema, TestsConfigSchema, TestDetailsConfigSchema } from './types';
 
 class ConfigService {
   private uiConfig: UIConfig | null = null;
   private testsConfig: TestsConfig | null = null;
+  private testDetails: TestDetailsConfig | null = null;
   private assumptions: Record<string, string> = {};
   private listeners: Array<() => void> = [];
 
@@ -17,6 +18,11 @@ class ConfigService {
       const testsResponse = await fetch('/config/tests.json');
       const testsData = await testsResponse.json();
       this.testsConfig = TestsConfigSchema.parse(testsData);
+
+      // Load test details
+      const testDetailsResponse = await fetch('/config/test-details.json');
+      const testDetailsData = await testDetailsResponse.json();
+      this.testDetails = TestDetailsConfigSchema.parse(testDetailsData);
 
       // Load assumptions markdown
       const assumptionsResponse = await fetch('/config/assumptions.md');
@@ -58,6 +64,14 @@ class ConfigService {
 
   getAssumption(testId: string): string {
     return this.assumptions[testId] || 'No assumptions available for this test.';
+  }
+
+  getTestDetails(): TestDetailsConfig | null {
+    return this.testDetails;
+  }
+
+  getTestDetail(testId: string) {
+    return this.testDetails?.[testId] || null;
   }
 
   async reload(): Promise<void> {

@@ -80,12 +80,14 @@ export const useWizardStore = create<WizardState>((set, get) => ({
     
     if (ruleResult.test) {
       const assumptions = configService.getAssumption(ruleResult.test.id);
+      const testDetails = configService.getTestDetail(ruleResult.test.id);
       
       const result: WizardResult = {
         test: ruleResult.test,
         rationale: ruleResult.rationale,
         assumptions,
         selections: ruleResult.selections,
+        details: testDetails
       };
       
       set({ result, isComplete: true });

@@ -83,6 +83,38 @@ Assumptions: ${result.assumptions}${result.test.alt ? `\nAlternative: ${result.t
           </p>
         </div>
 
+        {result.details && (
+          <>
+            <div>
+              <h4 className="font-medium text-foreground mb-2">Popis testu</h4>
+              <p className="text-muted-foreground leading-relaxed">
+                {result.details.description}
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-medium text-foreground mb-2">Hypotézy</h4>
+              <div className="space-y-2 text-sm">
+                <div className="p-3 bg-muted/50 rounded-lg">
+                  <p className="font-medium text-foreground mb-1">Nulová hypotéza:</p>
+                  <p className="text-muted-foreground">{result.details.nullHypothesis}</p>
+                </div>
+                <div className="p-3 bg-muted/50 rounded-lg">
+                  <p className="font-medium text-foreground mb-1">Alternativní hypotéza:</p>
+                  <p className="text-muted-foreground">{result.details.alternativeHypothesis}</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-medium text-foreground mb-2">Implementace v Pythonu</h4>
+              <pre className="bg-muted p-4 rounded-lg text-sm overflow-x-auto">
+                <code className="text-foreground">{result.details.pythonCode}</code>
+              </pre>
+            </div>
+          </>
+        )}
+
         <div className="pt-2 border-t border-border">
           <h4 className="font-medium text-foreground mb-2">Vaše volby</h4>
           <div className="flex flex-wrap gap-2">

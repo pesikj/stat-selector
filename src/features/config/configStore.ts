@@ -15,6 +15,7 @@ export const useConfigStore = create<ConfigStoreState>((set, get) => ({
   ui: null,
   tests: null,
   assumptions: {},
+  testDetails: null,
   isLoading: false,
   error: null,
 
@@ -28,6 +29,7 @@ export const useConfigStore = create<ConfigStoreState>((set, get) => ({
         ui: configService.getUIConfig(),
         tests: configService.getTestsConfig(),
         assumptions: configService.getAssumptions(),
+        testDetails: configService.getTestDetails(),
         isLoading: false,
       });
     } catch (error) {
@@ -72,6 +74,7 @@ export const useConfigStore = create<ConfigStoreState>((set, get) => ({
         ui: configService.getUIConfig(),
         tests: configService.getTestsConfig(),
         assumptions: configService.getAssumptions(),
+        testDetails: configService.getTestDetails(),
         isLoading: false,
       });
     } catch (error) {

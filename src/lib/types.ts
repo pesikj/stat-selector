@@ -36,10 +36,21 @@ export const RuleSchema = z.object({
   test: TestSchema,
 });
 
+// Test details schema
+export const TestDetailsSchema = z.object({
+  description: z.string(),
+  nullHypothesis: z.string(),
+  alternativeHypothesis: z.string(),
+  pythonCode: z.string(),
+});
+
 // Tests configuration schema
 export const TestsConfigSchema = z.object({
   rules: z.array(RuleSchema),
 });
+
+// Test details collection schema
+export const TestDetailsConfigSchema = z.record(TestDetailsSchema);
 
 // Inferred types
 export type Option = z.infer<typeof OptionSchema>;
@@ -48,6 +59,8 @@ export type UIConfig = z.infer<typeof UIConfigSchema>;
 export type Test = z.infer<typeof TestSchema>;
 export type Rule = z.infer<typeof RuleSchema>;
 export type TestsConfig = z.infer<typeof TestsConfigSchema>;
+export type TestDetails = z.infer<typeof TestDetailsSchema>;
+export type TestDetailsConfig = z.infer<typeof TestDetailsConfigSchema>;
 
 // Wizard state
 export interface WizardSelections {
@@ -61,12 +74,14 @@ export interface WizardResult {
   rationale: string;
   assumptions: string;
   selections: WizardSelections;
+  details?: TestDetails;
 }
 
 export interface ConfigState {
   ui: UIConfig | null;
   tests: TestsConfig | null;
   assumptions: Record<string, string>;
+  testDetails: TestDetailsConfig | null;
   isLoading: boolean;
   error: string | null;
 }

@@ -11,7 +11,7 @@ Předpoklad normality; testuje rozptyl populace pomocí χ².
 Test normality; hlásí W; citlivý pro malé n.
 
 ### welch_t
-Průměry dvou vzorků; nerovné rozptyly; hlásí t a df (Welch–Satterthwaite).
+Průměry dvou výběrů; nerovné rozptyly; hlásí t a df (Welch–Satterthwaite).
 
 ### mann_whitney_u
 Neparametrický; porovnává rozdělení pořadí; hlásí U.

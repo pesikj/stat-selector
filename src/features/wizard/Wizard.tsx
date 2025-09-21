@@ -123,7 +123,7 @@ export function Wizard() {
                 <div className="space-y-2 text-sm">
                   {selections.samples && (
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Počet vzorků:</span>
+                      <span className="text-muted-foreground">Počet výběrů:</span>
                       <span className="font-medium">{
                         ui.steps.find(s => s.id === 'samples')?.options?.find(o => o.id === selections.samples)?.label || selections.samples
                       }</span>

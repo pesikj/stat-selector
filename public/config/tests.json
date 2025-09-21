@@ -1,0 +1,22 @@
+{
+  "rules": [
+    { "when": { "samples": "one", "measure": "mean", "normality": "yes" }, "test": { "id": "one_sample_t", "name": "One-sample t-test", "alt": "Wilcoxon signed-rank" } },
+    { "when": { "samples": "one", "measure": "mean", "normality": "no" }, "test": { "id": "wilcoxon_signed_rank", "name": "Wilcoxon signed-rank test" } },
+    { "when": { "samples": "one", "measure": "mean", "normality": "unsure" }, "test": { "id": "wilcoxon_signed_rank", "name": "Wilcoxon signed-rank test" } },
+    { "when": { "samples": "one", "measure": "variance" }, "test": { "id": "chi_square_var", "name": "Chi-square variance test" } },
+    { "when": { "samples": "one", "measure": "normality" }, "test": { "id": "shapiro_wilk", "name": "Shapiro–Wilk normality test", "alt": "Anderson–Darling" } },
+
+    { "when": { "samples": "two", "measure": "means", "normality": "yes" }, "test": { "id": "welch_t", "name": "Welch's t-test" } },
+    { "when": { "samples": "two", "measure": "means", "normality": "no" }, "test": { "id": "mann_whitney_u", "name": "Mann–Whitney U" } },
+    { "when": { "samples": "two", "measure": "means", "normality": "unsure" }, "test": { "id": "mann_whitney_u", "name": "Mann–Whitney U" } },
+    { "when": { "samples": "two", "measure": "variances" }, "test": { "id": "levene", "name": "Levene's test", "alt": "Brown–Forsythe" } },
+    { "when": { "samples": "two", "measure": "correlation", "normality": "yes" }, "test": { "id": "pearson", "name": "Pearson correlation" } },
+    { "when": { "samples": "two", "measure": "correlation" }, "test": { "id": "spearman", "name": "Spearman rank correlation", "alt": "Kendall tau" } },
+    { "when": { "samples": "two", "measure": "distributions" }, "test": { "id": "ks_two_sample", "name": "Two-sample Kolmogorov–Smirnov" } },
+
+    { "when": { "samples": "three_or_more", "measure": "means", "normality": "yes" }, "test": { "id": "anova_one_way", "name": "One-way ANOVA" } },
+    { "when": { "samples": "three_or_more", "measure": "means", "normality": "no" }, "test": { "id": "kruskal_wallis", "name": "Kruskal–Wallis" } },
+    { "when": { "samples": "three_or_more", "measure": "means", "normality": "unsure" }, "test": { "id": "kruskal_wallis", "name": "Kruskal–Wallis" } },
+    { "when": { "samples": "three_or_more", "measure": "variances" }, "test": { "id": "levene", "name": "Levene's test", "alt": "Brown–Forsythe" } }
+  ]
+}

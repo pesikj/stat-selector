@@ -1,6 +1,6 @@
 {
   "one_sample_t": {
-    "description": "Jednovýběrový t-test porovnává průměr vzorku s hypotetickým průměrem populace při předpokladu normálního rozdělení dat.",
+    "description": "Jednovýběrový t-test porovnává průměr výběru s hypotetickým průměrem populace při předpokladu normálního rozdělení dat.",
     "nullHypothesis": "H₀: μ = μ₀ (průměr populace se rovná hypotetické hodnotě)",
     "alternativeHypothesis": "H₁: μ ≠ μ₀ (průměr populace se nerovná hypotetické hodnotě)",
     "pythonCode": "from scipy import stats\n\n# Jednovýběrový t-test\nstatistic, p_value = stats.ttest_1samp(data, popmean=hypothetical_mean)\nprint(f't-statistika: {statistic:.4f}')\nprint(f'p-hodnota: {p_value:.4f}')"
@@ -18,13 +18,13 @@
     "pythonCode": "from scipy import stats\nimport numpy as np\n\n# Chi-kvadrát test pro rozptyl\nn = len(data)\nsample_var = np.var(data, ddof=1)\nchi2_stat = (n - 1) * sample_var / hypothetical_variance\np_value = 2 * min(stats.chi2.cdf(chi2_stat, n-1), 1 - stats.chi2.cdf(chi2_stat, n-1))\nprint(f'χ² statistika: {chi2_stat:.4f}')\nprint(f'p-hodnota: {p_value:.4f}')"
   },
   "shapiro_wilk": {
-    "description": "Shapiro-Wilkův test testuje normalitu dat. Je citlivý především pro menší vzorky (n < 50).",
+    "description": "Shapiro-Wilkův test testuje normalitu dat. Je citlivý především pro menší výběry (n < 50).",
     "nullHypothesis": "H₀: data pocházejí z normálního rozdělení",
     "alternativeHypothesis": "H₁: data nepocházejí z normálního rozdělení",
     "pythonCode": "from scipy import stats\n\n# Shapiro-Wilk test normality\nstatistic, p_value = stats.shapiro(data)\nprint(f'W statistika: {statistic:.4f}')\nprint(f'p-hodnota: {p_value:.4f}')\nif p_value > 0.05:\n    print('Data pravděpodobně pocházejí z normálního rozdělení')\nelse:\n    print('Data pravděpodobně nepocházejí z normálního rozdělení')"
   },
   "welch_t": {
-    "description": "Welchův t-test porovnává průměry dvou nezávislých vzorků, aniž by předpokládal rovnost rozptylů.",
+    "description": "Welchův t-test porovnává průměry dvou nezávislých výběrů, aniž by předpokládal rovnost rozptylů.",
     "nullHypothesis": "H₀: μ₁ = μ₂ (průměry obou skupin jsou stejné)",
     "alternativeHypothesis": "H₁: μ₁ ≠ μ₂ (průměry obou skupin se liší)",
     "pythonCode": "from scipy import stats\n\n# Welchův t-test (nerovné rozptyly)\nstatistic, p_value = stats.ttest_ind(group1, group2, equal_var=False)\nprint(f't-statistika: {statistic:.4f}')\nprint(f'p-hodnota: {p_value:.4f}')"
@@ -54,9 +54,9 @@
     "pythonCode": "from scipy import stats\n\n# Spearmanova korelace\ncorr_coef, p_value = stats.spearmanr(x, y)\nprint(f'Spearmanův koeficient: {corr_coef:.4f}')\nprint(f'p-hodnota: {p_value:.4f}')"
   },
   "ks_two_sample": {
-    "description": "Dvouvýběrový Kolmogorov-Smirnovův test porovnává empirické distribuční funkce dvou vzorků.",
-    "nullHypothesis": "H₀: oba vzorky pocházejí ze stejného rozdělení",
-    "alternativeHypothesis": "H₁: vzorky pocházejí z různých rozdělení",
+    "description": "Dvouvýběrový Kolmogorov-Smirnovův test porovnává empirické distribuční funkce dvou výběrů.",
+    "nullHypothesis": "H₀: oba výběry pocházejí ze stejného rozdělení",
+    "alternativeHypothesis": "H₁: výběry pocházejí z různých rozdělení",
     "pythonCode": "from scipy import stats\n\n# Kolmogorov-Smirnov test\nstatistic, p_value = stats.ks_2samp(sample1, sample2)\nprint(f'KS statistika: {statistic:.4f}')\nprint(f'p-hodnota: {p_value:.4f}')"
   },
   "anova_one_way": {

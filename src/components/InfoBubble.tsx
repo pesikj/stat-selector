@@ -114,7 +114,7 @@ Assumptions: ${result.assumptions}${result.test.alt ? `\nAlternative: ${result.t
           <div className="flex flex-wrap gap-2">
             {result.selections.samples && (
               <Badge variant="outline">
-                Vzorky: {result.selections.samples.replace('_', ' ')}
+                Výběry: {result.selections.samples.replace('_', ' ')}
               </Badge>
             )}
             {result.selections.measure && (

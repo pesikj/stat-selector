@@ -3,7 +3,7 @@
   "steps": [
     {
       "id": "samples",
-      "label": "Počet vzorků",
+      "label": "Počet výběrů",
       "options": [
         { "id": "one", "label": "Jeden" },
         { "id": "two", "label": "Dva" },

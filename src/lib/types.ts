@@ -72,7 +72,6 @@ export interface WizardSelections {
 export interface WizardResult {
   test: Test;
   rationale: string;
-  assumptions: string;
   selections: WizardSelections;
   details?: TestDetails;
 }
@@ -80,7 +79,6 @@ export interface WizardResult {
 export interface ConfigState {
   ui: UIConfig | null;
   tests: TestsConfig | null;
-  assumptions: Record<string, string>;
   testDetails: TestDetailsConfig | null;
   isLoading: boolean;
   error: string | null;

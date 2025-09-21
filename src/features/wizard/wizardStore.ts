@@ -79,13 +79,11 @@ export const useWizardStore = create<WizardState>((set, get) => ({
     const ruleResult = findMatchingTest(selections, testsConfig);
     
     if (ruleResult.test) {
-      const assumptions = configService.getAssumption(ruleResult.test.id);
       const testDetails = configService.getTestDetail(ruleResult.test.id);
       
       const result: WizardResult = {
         test: ruleResult.test,
         rationale: ruleResult.rationale,
-        assumptions,
         selections: ruleResult.selections,
         details: testDetails
       };
@@ -96,7 +94,6 @@ export const useWizardStore = create<WizardState>((set, get) => ({
       const result: WizardResult = {
         test: { id: 'error', name: 'No Test Found' },
         rationale: ruleResult.rationale,
-        assumptions: 'Please check your selections and try again.',
         selections: ruleResult.selections,
       };
       

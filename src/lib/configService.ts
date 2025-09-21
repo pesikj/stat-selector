@@ -4,7 +4,7 @@ class ConfigService {
   private uiConfig: UIConfig | null = null;
   private testsConfig: TestsConfig | null = null;
   private testDetails: TestDetailsConfig | null = null;
-  private assumptions: Record<string, string> = {};
+
   private listeners: Array<() => void> = [];
 
   async loadConfigs(): Promise<void> {
@@ -24,30 +24,11 @@ class ConfigService {
       const testDetailsData = await testDetailsResponse.json();
       this.testDetails = TestDetailsConfigSchema.parse(testDetailsData);
 
-      // Load assumptions markdown
-      const assumptionsResponse = await fetch('/config/assumptions.md');
-      const assumptionsText = await assumptionsResponse.text();
-      this.assumptions = this.parseAssumptions(assumptionsText);
-
       this.notifyListeners();
     } catch (error) {
       console.error('Failed to load configs:', error);
       throw error;
     }
-  }
-
-  private parseAssumptions(markdown: string): Record<string, string> {
-    const assumptions: Record<string, string> = {};
-    const sections = markdown.split(/^### /m).filter(Boolean);
-    
-    for (const section of sections) {
-      const lines = section.split('\n');
-      const id = lines[0].trim();
-      const content = lines.slice(1).join('\n').trim();
-      assumptions[id] = content;
-    }
-    
-    return assumptions;
   }
 
   getUIConfig(): UIConfig | null {
@@ -56,14 +37,6 @@ class ConfigService {
 
   getTestsConfig(): TestsConfig | null {
     return this.testsConfig;
-  }
-
-  getAssumptions(): Record<string, string> {
-    return this.assumptions;
-  }
-
-  getAssumption(testId: string): string {
-    return this.assumptions[testId] || 'No assumptions available for this test.';
   }
 
   getTestDetails(): TestDetailsConfig | null {

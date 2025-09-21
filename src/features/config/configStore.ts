@@ -14,7 +14,6 @@ interface ConfigStoreState extends ConfigState {
 export const useConfigStore = create<ConfigStoreState>((set, get) => ({
   ui: null,
   tests: null,
-  assumptions: {},
   testDetails: null,
   isLoading: false,
   error: null,
@@ -28,7 +27,6 @@ export const useConfigStore = create<ConfigStoreState>((set, get) => ({
       set({
         ui: configService.getUIConfig(),
         tests: configService.getTestsConfig(),
-        assumptions: configService.getAssumptions(),
         testDetails: configService.getTestDetails(),
         isLoading: false,
       });
@@ -73,7 +71,6 @@ export const useConfigStore = create<ConfigStoreState>((set, get) => ({
       set({
         ui: configService.getUIConfig(),
         tests: configService.getTestsConfig(),
-        assumptions: configService.getAssumptions(),
         testDetails: configService.getTestDetails(),
         isLoading: false,
       });

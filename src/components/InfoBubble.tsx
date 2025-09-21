@@ -15,8 +15,7 @@ export function InfoBubble({ result, className }: InfoBubbleProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    const text = `Statistical Test: ${result.test.name}
-Assumptions: ${result.assumptions}${result.test.alt ? `\nAlternative: ${result.test.alt}` : ''}`;
+    const text = `Statistical Test: ${result.test.name}${result.test.alt ? `\nAlternative: ${result.test.alt}` : ''}`;
 
     try {
       await navigator.clipboard.writeText(text);
@@ -70,12 +69,6 @@ Assumptions: ${result.assumptions}${result.test.alt ? `\nAlternative: ${result.t
           )}
         </div>
 
-        <div>
-          <h4 className="font-medium text-foreground mb-2">Předpoklady</h4>
-          <p className="text-muted-foreground leading-relaxed">
-            {result.assumptions}
-          </p>
-        </div>
 
         {result.details && (
           <>

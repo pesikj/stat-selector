@@ -16,7 +16,6 @@ export function InfoBubble({ result, className }: InfoBubbleProps) {
 
   const handleCopy = async () => {
     const text = `Statistical Test: ${result.test.name}
-Rationale: ${result.rationale}
 Assumptions: ${result.assumptions}${result.test.alt ? `\nAlternative: ${result.test.alt}` : ''}`;
 
     try {
@@ -69,11 +68,6 @@ Assumptions: ${result.assumptions}${result.test.alt ? `\nAlternative: ${result.t
               Alternativa: {result.test.alt}
             </Badge>
           )}
-        </div>
-
-        <div>
-          <h4 className="font-medium text-foreground mb-2">Proč tento test?</h4>
-          <p className="text-muted-foreground">{result.rationale}</p>
         </div>
 
         <div>

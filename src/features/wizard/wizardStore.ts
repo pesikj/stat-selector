@@ -15,7 +15,7 @@ interface WizardState {
   nextStep: () => void;
   prevStep: () => void;
   reset: () => void;
-  calculateResult: () => void;
+  calculateResult: () => Promise<void>;
   canProceed: () => boolean;
   getTotalSteps: () => number;
 }
@@ -73,13 +73,18 @@ export const useWizardStore = create<WizardState>((set, get) => ({
     });
   },
 
-  calculateResult: () => {
+  calculateResult: async () => {
     const { selections } = get();
+    
+    // Force reload config to ensure we have the latest test details
+    await configService.reload();
+    
     const testsConfig = configService.getTestsConfig();
     const ruleResult = findMatchingTest(selections, testsConfig);
     
     if (ruleResult.test) {
       const testDetails = configService.getTestDetail(ruleResult.test.id);
+      console.log('Test details for', ruleResult.test.id, ':', testDetails);
       
       const result: WizardResult = {
         test: ruleResult.test,

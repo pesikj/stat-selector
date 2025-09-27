@@ -109,7 +109,7 @@ export function InfoBubble({ result, className }: InfoBubbleProps) {
                   <p className="text-muted-foreground">
                     {selectedAlternative ? selectedAlternative.nullHypothesis : result.details.nullHypothesis}
                   </p>
-                  {result.details.specificExamples && (
+                  {result.details?.specificExamples && (
                     <p className="text-xs text-muted-foreground/80 mt-1 italic">
                       Příklad: {result.details.specificExamples.nullHypothesis}
                     </p>
@@ -120,7 +120,7 @@ export function InfoBubble({ result, className }: InfoBubbleProps) {
                   <p className="text-muted-foreground">
                     {selectedAlternative ? selectedAlternative.alternativeHypothesis : result.details.alternativeHypothesis}
                   </p>
-                  {result.details.specificExamples && (
+                  {result.details?.specificExamples && (
                     <p className="text-xs text-muted-foreground/80 mt-1 italic">
                       Příklad: {result.details.specificExamples.alternativeHypothesis}
                     </p>

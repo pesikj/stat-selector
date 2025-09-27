@@ -42,6 +42,7 @@ export const TestDetailsSchema = z.object({
   nullHypothesis: z.string(),
   alternativeHypothesis: z.string(),
   pythonCode: z.string(),
+  examples: z.array(z.string()).optional(),
 });
 
 // Tests configuration schema

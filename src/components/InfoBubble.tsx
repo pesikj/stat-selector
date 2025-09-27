@@ -93,6 +93,20 @@ export function InfoBubble({ result, className }: InfoBubbleProps) {
               </div>
             </div>
 
+            {result.details.examples && result.details.examples.length > 0 && (
+              <div>
+                <h4 className="font-medium text-foreground mb-2">Příklady použití</h4>
+                <div className="space-y-2">
+                  {result.details.examples.map((example, index) => (
+                    <div key={index} className="flex items-start gap-2 p-3 bg-accent/10 rounded-lg">
+                      <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
+                      <p className="text-sm text-foreground">{example}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div>
               <h4 className="font-medium text-foreground mb-2">Implementace v Pythonu</h4>
               <pre className="bg-muted p-4 rounded-lg text-sm overflow-x-auto">

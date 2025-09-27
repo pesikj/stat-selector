@@ -3,8 +3,9 @@ import { Copy, Check, Info } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { WizardResult } from "@/lib/types";
+import { WizardResult, AlternativeOption } from "@/lib/types";
 
 interface InfoBubbleProps {
   result: WizardResult;
@@ -13,6 +14,7 @@ interface InfoBubbleProps {
 
 export function InfoBubble({ result, className }: InfoBubbleProps) {
   const [copied, setCopied] = useState(false);
+  const [selectedAlternative, setSelectedAlternative] = useState<AlternativeOption | null>(null);
 
   const handleCopy = async () => {
     const text = `Statistical Test: ${result.test.name}${result.test.alt ? `\nAlternative: ${result.test.alt}` : ''}`;
@@ -80,15 +82,49 @@ export function InfoBubble({ result, className }: InfoBubbleProps) {
             </div>
 
             <div>
-              <h4 className="font-medium text-foreground mb-2">Hypotézy</h4>
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="font-medium text-foreground">Hypotézy</h4>
+                {result.details.alternatives && result.details.alternatives.length > 0 && (
+                  <Select onValueChange={(value) => {
+                    const alt = result.details.alternatives?.find(a => a.symbol === value);
+                    setSelectedAlternative(alt || null);
+                  }}>
+                    <SelectTrigger className="w-20 h-8">
+                      <SelectValue placeholder="≠" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="≠">≠</SelectItem>
+                      {result.details.alternatives.map((alt) => (
+                        <SelectItem key={alt.symbol} value={alt.symbol}>
+                          {alt.symbol}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              </div>
               <div className="space-y-2 text-sm">
                 <div className="p-3 bg-muted/50 rounded-lg">
                   <p className="font-medium text-foreground mb-1">Nulová hypotéza:</p>
-                  <p className="text-muted-foreground">{result.details.nullHypothesis}</p>
+                  <p className="text-muted-foreground">
+                    {selectedAlternative ? selectedAlternative.nullHypothesis : result.details.nullHypothesis}
+                  </p>
+                  {result.details.specificExamples && (
+                    <p className="text-xs text-muted-foreground/80 mt-1 italic">
+                      Příklad: {result.details.specificExamples.nullHypothesis}
+                    </p>
+                  )}
                 </div>
                 <div className="p-3 bg-muted/50 rounded-lg">
                   <p className="font-medium text-foreground mb-1">Alternativní hypotéza:</p>
-                  <p className="text-muted-foreground">{result.details.alternativeHypothesis}</p>
+                  <p className="text-muted-foreground">
+                    {selectedAlternative ? selectedAlternative.alternativeHypothesis : result.details.alternativeHypothesis}
+                  </p>
+                  {result.details.specificExamples && (
+                    <p className="text-xs text-muted-foreground/80 mt-1 italic">
+                      Příklad: {result.details.specificExamples.alternativeHypothesis}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -110,7 +146,9 @@ export function InfoBubble({ result, className }: InfoBubbleProps) {
             <div>
               <h4 className="font-medium text-foreground mb-2">Implementace v Pythonu</h4>
               <pre className="bg-muted p-4 rounded-lg text-sm overflow-x-auto">
-                <code className="text-foreground">{result.details.pythonCode}</code>
+                <code className="text-foreground">
+                  {selectedAlternative ? selectedAlternative.pythonCode : result.details.pythonCode}
+                </code>
               </pre>
             </div>
           </>

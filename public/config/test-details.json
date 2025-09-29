@@ -54,7 +54,7 @@
     ]
   },
   "shapiro_wilk": {
-    "description": "Shapiro-Wilkův test ověřuje, zda výběr pochází z normálního rozdělení. Je zvláště citlivý u menších výběrů (n < 50).",
+    "description": "Shapiro–Wilkův test ověřuje, zda výběr pochází z normálního rozdělení. Je citlivý u menších výběrů.",
     "nullHypothesis": "H₀: data pocházejí z normálního rozdělení",
     "alternativeHypothesis": "H₁: data nepocházejí z normálního rozdělení",
     "pythonCode": "from scipy import stats\n\nstat, p = stats.shapiro(data)\nprint(f\"W={stat:.4f}, p={p:.4f}\")",
@@ -98,7 +98,7 @@
     ]
   },
   "mann_whitney_u": {
-    "description": "Mann-Whitney U test je neparametrická alternativa k dvouvýběrovému t-testu, používaná pro porovnání rozdělení dvou nezávislých výběrů.",
+    "description": "Mann–Whitneyho U test je neparametrická alternativa k dvouvýběrovému t-testu, používaná pro porovnání rozdělení dvou nezávislých výběrů.",
     "nullHypothesis": "H₀: rozdělení obou výběrů jsou identická",
     "alternativeHypothesis": "H₁: rozdělení obou výběrů se liší v poloze",
     "pythonCode": "from scipy import stats\n\nstat, p = stats.mannwhitneyu(group1, group2, alternative=\"two-sided\")\nprint(f\"U={stat:.4f}, p={p:.4f}\")",
@@ -138,7 +138,7 @@
     ]
   },
   "pearson": {
-    "description": "Pearsonova korelace měří sílu a směr lineárního vztahu mezi dvěma spojitými výběry při předpokladu normálního rozdělení.",
+    "description": "Pearsonova korelace měří sílu a směr lineárního vztahu mezi dvěma spojitými výběry.",
     "nullHypothesis": "H₀: ρ = 0 (žádná lineární korelace)",
     "alternativeHypothesis": "H₁: ρ ≠ 0 (existuje lineární korelace)",
     "pythonCode": "from scipy import stats\n\nr, p = stats.pearsonr(x, y)\nprint(f\"r={r:.4f}, p={p:.4f}\")",
@@ -158,7 +158,7 @@
     ]
   },
   "ks_two_sample": {
-    "description": "Dvouvýběrový Kolmogorov-Smirnovův test porovnává distribuční funkce dvou výběrů a zjišťuje, zda výběry pocházejí ze stejného rozdělení.",
+    "description": "Dvouvýběrový Kolmogorov–Smirnovův test porovnává distribuční funkce dvou výběrů a zjišťuje, zda výběry pocházejí ze stejného rozdělení.",
     "nullHypothesis": "H₀: oba výběry pocházejí ze stejného rozdělení",
     "alternativeHypothesis": "H₁: výběry pocházejí z různých rozdělení",
     "pythonCode": "from scipy import stats\n\nstat, p = stats.ks_2samp(sample1, sample2)\nprint(f\"KS={stat:.4f}, p={p:.4f}\")",
@@ -174,7 +174,7 @@
     "pythonCode": "from scipy import stats\n\n# groups = [g1, g2, g3, ...]\nstat, p = stats.f_oneway(*groups)\nprint(f\"F={stat:.4f}, p={p:.4f}\")",
     "examples": [
       "Porovnání průměrných výsledků studentů ze tří různých fakult",
-      "Analýza rozdílů v známkách mezi studenty prvního, druhého a třetího ročníku"
+      "Analýza rozdílů ve známkách mezi studenty prvního, druhého a třetího ročníku"
     ],
     "specificExamples": {
       "nullHypothesis": "H₀: všechny fakulty mají stejný průměr známek (μ₁ = μ₂ = μ₃)",
@@ -182,12 +182,12 @@
     }
   },
   "kruskal_wallis": {
-    "description": "Kruskal-Wallisův test je neparametrická alternativa k jednocestné ANOVA a slouží k porovnání rozdělení více než dvou nezávislých výběrů.",
+    "description": "Kruskal–Wallisův test je neparametrická alternativa k jednocestné ANOVA a slouží k porovnání rozdělení více než dvou nezávislých výběrů.",
     "nullHypothesis": "H₀: všechny výběry mají identická rozdělení",
     "alternativeHypothesis": "H₁: alespoň jeden výběr má odlišné rozdělení",
     "pythonCode": "from scipy import stats\n\n# groups = [g1, g2, g3, ...]\nstat, p = stats.kruskal(*groups)\nprint(f\"H={stat:.4f}, p={p:.4f}\")",
     "examples": [
-      "Porovnání úspěšnosti studentů z různých studijních programů (non-parametrický přístup)",
+      "Porovnání úspěšnosti studentů z různých studijních programů (neparametrický přístup)",
       "Analýza rozdílů v hodnocení mezi studenty různých věkových skupin"
     ],
     "specificExamples": {

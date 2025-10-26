@@ -1,73 +1,29 @@
-import { useState } from "react";
-import { RefreshCw, Save, Download, Upload } from "lucide-react";
+import { useEffect, useState } from "react";
+import { RefreshCw, Download, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useConfigStore } from "./configStore";
-import { UIConfigSchema, TestsConfigSchema } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export function ConfigPage() {
-  const { ui, tests, reloadConfig, updateUIConfig, updateTestsConfig, isLoading, error } = useConfigStore();
+  const { ui, tests, reloadConfig, isLoading, error } = useConfigStore();
   
   const [uiJson, setUiJson] = useState("");
   const [testsJson, setTestsJson] = useState("");
-  const [validationError, setValidationError] = useState<string | null>(null);
-  const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
 
-  // Initialize JSON strings when config loads
-  useState(() => {
+  useEffect(() => {
     if (ui) setUiJson(JSON.stringify(ui, null, 2));
+  }, [ui]);
+
+  useEffect(() => {
     if (tests) setTestsJson(JSON.stringify(tests, null, 2));
-  });
+  }, [tests]);
 
   const handleReload = async () => {
-    try {
-      await reloadConfig();
-      if (ui) setUiJson(JSON.stringify(ui, null, 2));
-      if (tests) setTestsJson(JSON.stringify(tests, null, 2));
-      setValidationError(null);
-      setSaveSuccess("Configuration reloaded successfully!");
-      setTimeout(() => setSaveSuccess(null), 3000);
-    } catch (err) {
-      setValidationError("Failed to reload configuration");
-    }
-  };
-
-  const validateAndSaveUI = async () => {
-    try {
-      const parsed = JSON.parse(uiJson);
-      const validated = UIConfigSchema.parse(parsed);
-      await updateUIConfig(validated);
-      setSaveSuccess("UI configuration saved successfully!");
-      setValidationError(null);
-      setTimeout(() => setSaveSuccess(null), 3000);
-    } catch (err) {
-      if (err instanceof SyntaxError) {
-        setValidationError(`Invalid JSON: ${err.message}`);
-      } else {
-        setValidationError(`Validation error: ${err}`);
-      }
-    }
-  };
-
-  const validateAndSaveTests = async () => {
-    try {
-      const parsed = JSON.parse(testsJson);
-      const validated = TestsConfigSchema.parse(parsed);
-      await updateTestsConfig(validated);
-      setSaveSuccess("Tests configuration saved successfully!");
-      setValidationError(null);
-      setTimeout(() => setSaveSuccess(null), 3000);
-    } catch (err) {
-      if (err instanceof SyntaxError) {
-        setValidationError(`Invalid JSON: ${err.message}`);
-      } else {
-        setValidationError(`Validation error: ${err}`);
-      }
-    }
+    await reloadConfig();
   };
 
   const downloadConfig = (content: string, filename: string) => {
@@ -116,7 +72,7 @@ export function ConfigPage() {
           Editor konfigurace
         </h1>
         <p className="text-muted-foreground">
-          Upravte a spravujte konfiguraci výběru statistických testů
+          Prohlédněte si konfiguraci výběru statistických testů (pouze pro čtení)
         </p>
       </div>
 
@@ -132,18 +88,10 @@ export function ConfigPage() {
         </Button>
       </div>
 
-      {(error || validationError) && (
+      {error && (
         <Alert className="mb-6 border-destructive">
           <AlertDescription className="text-destructive">
-            {error || validationError}
-          </AlertDescription>
-        </Alert>
-      )}
-
-      {saveSuccess && (
-        <Alert className="mb-6 border-success bg-success/10">
-          <AlertDescription className="text-success">
-            {saveSuccess}
+            {error}
           </AlertDescription>
         </Alert>
       )}
@@ -182,15 +130,11 @@ export function ConfigPage() {
             <CardContent className="space-y-4">
               <Textarea
                 value={uiJson}
-                onChange={(e) => setUiJson(e.target.value)}
+                readOnly
                 className="font-mono text-sm min-h-[400px]"
-                placeholder="Zadejte JSON konfiguraci rozhraní..."
-                aria-label="UI configuration JSON editor"
+                placeholder="JSON konfigurace rozhraní (pouze pro čtení)"
+                aria-label="UI configuration JSON viewer"
               />
-              <Button onClick={validateAndSaveUI} className="w-full">
-                <Save className="h-4 w-4 mr-2" />
-                Ověřit a uložit konfiguraci rozhraní
-              </Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -223,15 +167,11 @@ export function ConfigPage() {
             <CardContent className="space-y-4">
               <Textarea
                 value={testsJson}
-                onChange={(e) => setTestsJson(e.target.value)}
+                readOnly
                 className="font-mono text-sm min-h-[400px]"
-                placeholder="Zadejte JSON konfiguraci testů..."
-                aria-label="Tests configuration JSON editor"
+                placeholder="JSON konfigurace testů (pouze pro čtení)"
+                aria-label="Tests configuration JSON viewer"
               />
-              <Button onClick={validateAndSaveTests} className="w-full">
-                <Save className="h-4 w-4 mr-2" />
-                Ověřit a uložit konfiguraci testů
-              </Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -240,11 +180,11 @@ export function ConfigPage() {
       <div className="mt-8 p-4 bg-muted/50 rounded-lg">
         <h3 className="font-semibold text-sm mb-2">Nápověda ke konfiguraci</h3>
         <ul className="text-sm text-muted-foreground space-y-1">
-          <li>• Před uložením se ujistěte, že je JSON platný</li>
+          <li>• Konfiguraci lze upravit pouze mimo aplikaci úpravou zdrojových souborů</li>
           <li>• Konfigurace rozhraní definuje kroky, popisky a možnosti</li>
           <li>• Konfigurace testů mapuje výběry na statistické testy</li>
           <li>• Použijte tlačítko "Načíst konfiguraci" pro obnovení ze serverových souborů</li>
-          <li>• Změny jsou ověřovány pomocí JSON schématu</li>
+          <li>• Stávající nastavení si můžete stáhnout pomocí ikonky stažení</li>
         </ul>
       </div>
     </div>

@@ -22,6 +22,7 @@ export function Wizard() {
     reset,
     canProceed,
     getTotalSteps,
+    shouldSkipNormalityStep,
   } = useWizardStore();
 
   const { ui, loadConfig, isLoading, error } = useConfigStore();
@@ -65,7 +66,18 @@ export function Wizard() {
   }
 
   const totalSteps = getTotalSteps();
-  const currentStepData = ui.steps[currentStep];
+
+  // Get the filtered steps based on whether we should skip normality
+  const getFilteredSteps = () => {
+    if (!ui) return [];
+    if (shouldSkipNormalityStep()) {
+      return ui.steps.filter(step => step.id !== 'normality');
+    }
+    return ui.steps;
+  };
+
+  const filteredSteps = getFilteredSteps();
+  const currentStepData = filteredSteps[currentStep];
 
   // Get options for current step
   const getStepOptions = (): Option[] => {

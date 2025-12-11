@@ -8,7 +8,7 @@ interface WizardState {
   selections: WizardSelections;
   result: WizardResult | null;
   isComplete: boolean;
-  
+
   // Actions
   setStep: (step: number) => void;
   setSelection: (key: keyof WizardSelections, value: string) => void;
@@ -18,6 +18,7 @@ interface WizardState {
   calculateResult: () => Promise<void>;
   canProceed: () => boolean;
   getTotalSteps: () => number;
+  shouldSkipNormalityStep: () => boolean;
 }
 
 export const useWizardStore = create<WizardState>((set, get) => ({
@@ -47,20 +48,45 @@ export const useWizardStore = create<WizardState>((set, get) => ({
   },
 
   nextStep: () => {
-    const { currentStep, getTotalSteps, calculateResult } = get();
+    const { currentStep, getTotalSteps, calculateResult, shouldSkipNormalityStep } = get();
     const totalSteps = getTotalSteps();
-    
+    const uiConfig = configService.getUIConfig();
+
     if (currentStep < totalSteps - 1) {
-      set({ currentStep: currentStep + 1 });
+      let nextStepIndex = currentStep + 1;
+
+      // If we should skip the normality step and we're about to land on it, skip it
+      if (shouldSkipNormalityStep() && uiConfig) {
+        const nextStepId = uiConfig.steps[nextStepIndex]?.id;
+        if (nextStepId === 'normality') {
+          // We've completed all steps (skipped normality), so calculate result
+          calculateResult();
+          return;
+        }
+      }
+
+      set({ currentStep: nextStepIndex });
     } else {
       calculateResult();
     }
   },
 
   prevStep: () => {
-    const { currentStep } = get();
+    const { currentStep, shouldSkipNormalityStep } = get();
+    const uiConfig = configService.getUIConfig();
+
     if (currentStep > 0) {
-      set({ currentStep: currentStep - 1, isComplete: false, result: null });
+      let prevStepIndex = currentStep - 1;
+
+      // If we should skip the normality step and we're about to land on it, skip it
+      if (shouldSkipNormalityStep() && uiConfig) {
+        const prevStepId = uiConfig.steps[prevStepIndex]?.id;
+        if (prevStepId === 'normality' && prevStepIndex > 0) {
+          prevStepIndex = prevStepIndex - 1;
+        }
+      }
+
+      set({ currentStep: prevStepIndex, isComplete: false, result: null });
     }
   },
 
@@ -131,6 +157,16 @@ export const useWizardStore = create<WizardState>((set, get) => ({
 
   getTotalSteps: () => {
     const uiConfig = configService.getUIConfig();
-    return uiConfig?.steps.length || 3;
+    const { shouldSkipNormalityStep } = get();
+    const totalSteps = uiConfig?.steps.length || 3;
+
+    // If we're skipping the normality step, reduce total by 1
+    return shouldSkipNormalityStep() ? totalSteps - 1 : totalSteps;
+  },
+
+  shouldSkipNormalityStep: () => {
+    const { selections } = get();
+    // Skip normality step if user selected to test normality (measure === "normality")
+    return selections.measure === 'normality';
   },
 }));

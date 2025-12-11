@@ -8,10 +8,6 @@
       "Porovnání výkonu studentů s celostátním průměrem",
       "Testování, zda průměrná známka třídy se liší od očekávané hodnoty 2.5"
     ],
-    "specificExamples": {
-      "nullHypothesis": "H₀: průměr třídy je stejný jako celostátní průměr (μ = 2.5)",
-      "alternativeHypothesis": "H₁: průměr třídy se liší od celostátního průměru (μ ≠ 2.5)"
-    },
     "alternatives": [
       {
         "symbol": "<",
@@ -37,11 +33,7 @@
     "examples": [
       "Porovnání počtu bodů studentů v testu před a po kurzu",
       "Analýza změn v hodnocení studentů po implementaci nové výukové metody"
-    ],
-    "specificExamples": {
-      "nullHypothesis": "H₀: medián rozdílu známek před a po kurzu je nula",
-      "alternativeHypothesis": "H₁: medián rozdílu známek před a po kurzu není nula"
-    }
+    ]
   },
   "chi_square_var": {
     "description": "Chi-kvadrát test rozptylu posuzuje, zda se rozptyl výběru shoduje s hypotetickou hodnotou za předpokladu normálního rozdělení výběru.",
@@ -61,11 +53,7 @@
     "examples": [
       "Ověření normality rozdělení známek před použitím parametrických testů",
       "Kontrola předpokladů pro t-test u výsledků studentů"
-    ],
-    "specificExamples": {
-      "nullHypothesis": "H₀: známky studentů mají normální rozdělení",
-      "alternativeHypothesis": "H₁: známky studentů nemají normální rozdělení"
-    }
+    ]
   },
   "welch_t": {
     "description": "Welchův t-test porovnává průměry dvou nezávislých výběrů bez předpokladu rovnosti rozptylů.",
@@ -76,10 +64,6 @@
       "Porovnání výsledků studentů ze dvou různých škol",
       "Analýza rozdílů v průměrných známkách mezi chlapci a dívkami"
     ],
-    "specificExamples": {
-      "nullHypothesis": "H₀: průměrná známka školy A je stejná jako školy B (μ₁ = μ₂)",
-      "alternativeHypothesis": "H₁: průměrná známka školy A se liší od školy B (μ₁ ≠ μ₂)"
-    },
     "alternatives": [
       {
         "symbol": "<",
@@ -106,10 +90,6 @@
       "Porovnání úspěšnosti studentů různých studijních oborů",
       "Analýza rozdílů v hodnocení mezi studenty s různým socioekonomickým zázemím"
     ],
-    "specificExamples": {
-      "nullHypothesis": "H₀: studenti informatiky a ekonomie mají stejné rozdělení známek",
-      "alternativeHypothesis": "H₁: studenti informatiky a ekonomie mají odlišné rozdělení známek"
-    },
     "alternatives": [
       {
         "symbol": "<",
@@ -175,11 +155,7 @@
     "examples": [
       "Porovnání průměrných výsledků studentů ze tří různých fakult",
       "Analýza rozdílů ve známkách mezi studenty prvního, druhého a třetího ročníku"
-    ],
-    "specificExamples": {
-      "nullHypothesis": "H₀: všechny fakulty mají stejný průměr známek (μ₁ = μ₂ = μ₃)",
-      "alternativeHypothesis": "H₁: alespoň jedna fakulta má odlišný průměr známek"
-    }
+    ]
   },
   "kruskal_wallis": {
     "description": "Kruskal–Wallisův test je neparametrická alternativa k jednocestné ANOVA a slouží k porovnání rozdělení více než dvou nezávislých výběrů.",
@@ -189,10 +165,6 @@
     "examples": [
       "Porovnání úspěšnosti studentů z různých studijních programů (neparametrický přístup)",
       "Analýza rozdílů v hodnocení mezi studenty různých věkových skupin"
-    ],
-    "specificExamples": {
-      "nullHypothesis": "H₀: všechny studijní programy mají stejné rozdělení známek",
-      "alternativeHypothesis": "H₁: alespoň jeden studijní program má odlišné rozdělení známek"
-    }
+    ]
   }
 }

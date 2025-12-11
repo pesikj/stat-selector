@@ -52,10 +52,6 @@ export const TestDetailsSchema = z.object({
   alternativeHypothesis: z.string(),
   pythonCode: z.string(),
   examples: z.array(z.string()).optional(),
-  specificExamples: z.object({
-    nullHypothesis: z.string(),
-    alternativeHypothesis: z.string(),
-  }).optional(),
   alternatives: z.array(AlternativeOptionSchema).optional(),
 });
 
